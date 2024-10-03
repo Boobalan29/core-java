@@ -11,7 +11,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Emploayeedetails")
+@Table
 public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,6 +21,7 @@ public class Employee {
 	private String dept;
 	private int deptno;
 	private int Salary;
+	
    @OneToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "aadharno", referencedColumnName = "id")
     private PersonalDetails aadhardetails;

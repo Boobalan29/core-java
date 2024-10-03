@@ -1,49 +1,39 @@
-package com.HealthInsurance.HealthInsurance.BajajHealthInsurance;
-
+package com.Insurance.HealthInsurancePolicy.Entity;
 
 import jakarta.persistence.*;
-
-
-import org.apache.logging.log4j.message.Message;
-import org.springframework.boot.autoconfigure.web.WebProperties;
-import org.springframework.lang.NonNull;
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 @Entity
-@Table(name = "policytable")
-
+@Table(name="Policy")
 public class Policy {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
-    
+    @NotBlank(message = "Write Policy Number")
     private String policynumber;
-
-
-@NonNull
-    private String policyholderName;
-
-
+    @NotBlank(message="Write poliy Holder Name")
+    private String policyholder;
+@Positive(message="coverage must bepositive")
     private long coverageamount;
-
-@NonNull
-    private LocalDate startdate;
-
-    public Policy(int id, String policynumber, String policyholderName, long coverageamount, LocalDate startdate) {
-        this.id = id;
-        this.policynumber = policynumber;
-        this.policyholderName = policyholderName;
-        this.coverageamount = coverageamount;
-        this.startdate = startdate;
-    }
+@NotNull(message = "Enter start date")
+private LocalDate startdate;
 
     public Policy() {
+    }
+
+    public Policy(int id, String policynumber, String policyholder, long coverageamount, LocalDate startdate) {
+        this.id = id;
+        this.policynumber = policynumber;
+        this.policyholder = policyholder;
+        this.coverageamount = coverageamount;
+        this.startdate = startdate;
     }
 
     public int getId() {
@@ -62,12 +52,12 @@ public class Policy {
         this.policynumber = policynumber;
     }
 
-    public String getPolicyholderName() {
-        return policyholderName;
+    public String getPolicyholder() {
+        return policyholder;
     }
 
-    public void setPolicyholderName(String policyholderName) {
-        this.policyholderName = policyholderName;
+    public void setPolicyholder(String policyholder) {
+        this.policyholder = policyholder;
     }
 
     public long getCoverageamount() {
@@ -85,5 +75,4 @@ public class Policy {
     public void setStartdate(LocalDate startdate) {
         this.startdate = startdate;
     }
-
 }
